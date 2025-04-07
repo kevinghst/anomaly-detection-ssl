@@ -11,6 +11,7 @@ from src.datasets.higgs import Higgs
 from src.datasets.higgs_embedded import HiggsEmbedded
 from src.datasets.jannis import Jannis
 from src.datasets.jannis_embedded import JannisEmbedded
+from src.datasets.mqtt import MQTT
 
 DATASET_NAME_TO_DATASET_MAP = {
     "adult": Adult,
@@ -25,4 +26,6 @@ DATASET_NAME_TO_DATASET_MAP = {
     "higgs_embedded": HiggsEmbedded,
     "california_embedded": CaliforniaEmbedded,
     "adult_embedded": AdultEmbedded,
+    ### for anomaly detection below
+    "mqtt": MQTT,
 }
