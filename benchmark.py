@@ -63,7 +63,7 @@ def main(config_file, num_runs):
 
     print("Test summary:", summary)
 
-    with open(f"{config_file.split("/")[-1].replace(".json", "")}/summary.json", "w") as f:
+    with open(f"{config_file.split('/')[-1].replace('.json', '')}/summary.json", "w") as f:
         json.dump(summary, f, indent=4)
 
 

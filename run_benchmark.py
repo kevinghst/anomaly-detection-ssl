@@ -102,7 +102,7 @@ def train_benchmark_model(args, model_args, profile_name: str):
     test_metrics = trainer.test(model, datamodule=datamodule)
     print("Test metrics: ", test_metrics)
 
-    trainer.save_checkpoint(f"{args["model_name"]}_{args['data_set']}.ckpt")
+    trainer.save_checkpoint(f"{args['model_name']}_{args['data_set']}.ckpt")
 
     return val_metrics, test_metrics, args
 
@@ -110,15 +110,15 @@ def train_benchmark_model(args, model_args, profile_name: str):
 def set_callbacks_loggers(args: dict):
     callbacks = [
         ModelCheckpoint(
-            monitor=f"{args["data_set"]}_val_loss",
+            monitor=f"{args['data_set']}_val_loss",
             mode="min",
             save_top_k=1,
             dirpath="checkpoints/",
             filename="model-{epoch:02d}-{val_loss:.2f}",
         ),
         EarlyStopping(
-            monitor=f"{args["data_set"]}_val_loss",
-            patience=args["exp_patience"],
+            monitor=f"{args['data_set']}_val_loss",
+            patience=args['exp_patience'],
             mode="min",
         ),
     ]
@@ -130,7 +130,7 @@ def set_callbacks_loggers(args: dict):
             log_graph=False,
             save_code=False,
         ),
-        TensorBoardLogger("lightning_logs", name="t-jepa-2", version=f"{args['model_name']}_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}"),
+        TensorBoardLogger("lightning_logs", name="t-jepa-2", version=f"{args['model_name']}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"),
     ]
 
     return callbacks, loggers
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     model_args, _ = model_args.parse_known_args()
 
     profile_name = f'profile_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.prof' 
-    wandb.init(project="t-jepa", reinit=True, name=f"{args.model_name}_{args.data_set}_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}", config=args)
+    wandb.init(project="t-jepa", reinit=True, name=f"{args.model_name}_{args.data_set}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}", config=args)
 
     val_metrics, test_metrics, args = train_benchmark_model(args, model_args, profile_name) 
 
