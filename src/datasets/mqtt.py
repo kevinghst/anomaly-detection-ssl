@@ -58,7 +58,7 @@ class MQTT(BaseDataset):
         super(MQTT, self).__init__(args)
 
         self.is_data_loaded = False
-        self.tmp_file_names = ["train70_reduced.csv"]
+        self.tmp_file_names = ["train70.csv"]
         self.name = "mqtt"
         self.args = args
         self.task_type = TASK_TYPE.BINARY_CLASS
